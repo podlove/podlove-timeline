@@ -1,3 +1,10 @@
-# Chapterformat Converter
+# Podlove Timeline
 
-Convert from one chapter format to another. Supported: mp4chaps, psc, WebVTT, JSON.
+PHP library providing a toolkit to handle various timeline/chapter formats.
+
+Supported formats:
+
+- mp4chaps
+- psc
+- WebVTT
+- JSON
