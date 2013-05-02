@@ -7,9 +7,7 @@ use \Podlove\Chapters\Chapter;
 class Mp4chapsPrinterTest extends PHPUnit_Framework_TestCase {
 
 	public function testPrinter() {
-	    $parsed = Parser\Mp4chaps::parse("1.234 Intro\n12:34 About us\n1:2:3 Later");
-
-	    $expected_print = trim("
+		$expected_print = trim("
 00:00:01.234 Intro <http://example.com>
 00:12:34.000 About us
 01:02:03.000 Later
