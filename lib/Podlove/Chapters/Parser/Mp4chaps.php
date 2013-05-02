@@ -6,9 +6,7 @@ use \Podlove\NormalPlayTime;
 
 class Mp4chaps {
 
-	public function parse( $chapters_string ) {
-
-		$chapters_string = trim( $chapters_string );
+	public static function parse( $chapters_string ) {
 
 		if ( ! strlen( $chapters_string ) )
 			return NULL;
@@ -16,12 +14,15 @@ class Mp4chaps {
 		$chapters = new Chapters();
 
 		foreach( preg_split( "/((\r?\n)|(\r\n?))/", $chapters_string ) as $line ) {
-		    $valid = preg_match( '/^((?:\d+\:[0-5]\d\:[0-5]\d(?:\.\d+)?)|\d+(?:\.\d+)?)(.*)$/', trim( $line ), $matches );
+		    $valid = preg_match( '/^([\d.:]+)\W+(.*)$/', trim( $line ), $matches );
 
 		    if ( ! $valid ) continue;
 
-		    $time_string = trim( $matches[1] );
-			$title = trim( $matches[2] );
+		    $time_string = $matches[1];
+			$title       = $matches[2];
+		    $timestamp_milliseconds = NormalPlayTime\Parser::parse( $time_string );
+
+		    if ( ! $timestamp_milliseconds ) continue;
 
 			$link = '';
 			$title = preg_replace_callback( '/\s?<[^>]+>\s?/' , function ( $matches ) use ( &$link ) {
@@ -29,7 +30,7 @@ class Mp4chaps {
 				return ' ';
 			}, $title );
 
-			$chapters->addChapter( new Chapter( NormalPlayTime\Parser::parse( $time_string ), $title ) );
+			$chapters->addChapter( new Chapter( $timestamp_milliseconds, trim( $title ), $link ) );
 		} 
 
 		return $chapters;
