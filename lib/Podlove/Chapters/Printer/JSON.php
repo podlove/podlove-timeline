@@ -8,7 +8,7 @@ class JSON implements Printer {
 			return (object) array(
 				'start' => $chapter->get_time(),
 				'title' => $chapter->get_title(),
-				'href' => $chapter->get_link(),
+				'href'  => $chapter->get_link(),
 				'image' => $chapter->get_image(),
 			);
 		}, $chapters->toArray() ) );
