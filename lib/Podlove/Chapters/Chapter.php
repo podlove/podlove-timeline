@@ -6,11 +6,13 @@ class Chapter {
 	private $timestamp;
 	private $title;
 	private $link;
+	private $image;
 
-	public function __construct( $timestamp, $title, $link = '' ) {
+	public function __construct( $timestamp, $title, $link = '', $image = '' ) {
 		$this->timestamp = $timestamp;
 		$this->title = $title;
 		$this->link = $link;
+		$this->image = $image;
 	}
 
 	public function get_title() {
@@ -19,6 +21,10 @@ class Chapter {
 
 	public function get_link() {
 		return $this->link;
+	}
+
+	public function get_image() {
+		return $this->image;
 	}
 
 	public function get_time() {
