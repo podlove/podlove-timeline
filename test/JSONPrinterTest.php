@@ -13,11 +13,11 @@ class JSONPrinterTest extends PHPUnit_Framework_TestCase {
 	{ "start": "01:02:03.000", "title": "Later", "href": "", "image": "http://example.com/foo.jpg" }
 ]'));
 
-	    $chapters = new Chapters();
-	    $chapters->addChapter( new Chapter( 1234, 'Intro', 'http://example.com' ) );
-	    $chapters->addChapter( new Chapter( 754000, 'About us' ) );
-	    $chapters->addChapter( new Chapter( 3723000, 'Later', '', 'http://example.com/foo.jpg' ) );
-	    $chapters->setPrinter( new Printer\JSON() );
+		$chapters = new Chapters();
+		$chapters->addChapter( new Chapter( 1234, 'Intro', 'http://example.com' ) );
+		$chapters->addChapter( new Chapter( 754000, 'About us' ) );
+		$chapters->addChapter( new Chapter( 3723000, 'Later', '', 'http://example.com/foo.jpg' ) );
+		$chapters->setPrinter( new Printer\JSON() );
 
 	    $this->assertEquals( $expected_print, (string) $chapters );
 	}
