@@ -1,5 +1,7 @@
 # Podlove Timeline
 
+[![Build Status](https://travis-ci.org/podlove/podlove-timeline.png?branch=master)](https://travis-ci.org/podlove/podlove-timeline)
+
 PHP library providing a toolkit to handle various timeline/chapter formats.
 
 Supported formats:
