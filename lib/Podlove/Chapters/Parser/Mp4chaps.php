@@ -8,6 +8,9 @@ class Mp4chaps {
 
 	public static function parse( $chapters_string ) {
 
+		// remove UTF8 BOM if it exists
+		$chapters_string = str_replace("\xef\xbb\xbf", "", $chapters_string);
+
 		$chapters_string = trim( $chapters_string );
 
 		if ( ! strlen( $chapters_string ) )
@@ -15,7 +18,7 @@ class Mp4chaps {
 
 		$chapters = new Chapters();
 		$invalid_lines = 0;
-
+		
 		foreach( preg_split( "/((\r?\n)|(\r\n?))/", $chapters_string ) as $line ) {
 		    $valid = preg_match( '/^([\d.:]+)(.*)$/', trim( $line ), $matches );
 

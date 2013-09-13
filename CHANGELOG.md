@@ -1,3 +1,7 @@
+### 1.1.8 (2013-09-13)
+
+* solve issue with UTF8 Byte Order Mark
+
 ### 1.1.7 (2013-06-16)
 
 * solve rare encoding issue in mp4chaps parser

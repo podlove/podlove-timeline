@@ -7,6 +7,9 @@ use \Podlove\NormalPlayTime;
 class PSC {
 
 	public static function parse( $chapters_string ) {
+
+		// remove UTF8 BOM if it exists
+		$chapters_string = str_replace("\xef\xbb\xbf", "", $chapters_string);
 		
 		if ( ! is_string( $chapters_string ) )
 			return NULL;

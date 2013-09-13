@@ -89,6 +89,14 @@ class Mp4chapsParserTest extends PHPUnit_Framework_TestCase {
         $this->assertEquals( 2, count( $result->toArray() ) );
     }
 
+    public function testChapterBeginningWithUtf8BOM() {
+        $file = "\357\273\27700:00:00.000 Intro
+00:00:19.000 Wochenrückblick";
+        $result = Mp4chaps::parse($file);
+
+        $this->assertEquals( 2, count( $result->toArray() ) );
+    }
+
     public function testChapterStartingWithUmlaut() {
         $result = Mp4chaps::parse("00:00:00.000 Intro
 00:00:19.000 Übermensch");

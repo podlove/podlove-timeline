@@ -7,6 +7,9 @@ use \Podlove\NormalPlayTime;
 class JSON {
 
 	public static function parse( $chapters_string ) {
+
+		// remove UTF8 BOM if it exists
+		$chapters_string = str_replace("\xef\xbb\xbf", "", $chapters_string);
 		
 		$chapters = new Chapters();
 
