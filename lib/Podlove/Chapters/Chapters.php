@@ -1,7 +1,7 @@
 <?php 
 namespace Podlove\Chapters;
 
-class Chapters implements \Iterator, \ArrayAccess {
+class Chapters implements \Iterator, \ArrayAccess, \Countable {
 
 	private $chapters = array();
 	private $printer = NULL;
@@ -72,6 +72,13 @@ class Chapters implements \Iterator, \ArrayAccess {
 
 	public function offsetGet($offset) {
 	    return isset($this->chapters[$offset]) ? $this->chapters[$offset] : null;
+	}
+
+	/**
+	 * Countable Methods
+	 */
+	public function count() {
+	    return count($this->chapters);
 	}
 
 }
