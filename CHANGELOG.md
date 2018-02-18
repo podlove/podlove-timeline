@@ -1,3 +1,7 @@
+### 1.1.9 (2018-02-18)
+
+* fix warning in PHP 7.2 by implementing `Countable` interface
+
 ### 1.1.8 (2013-09-13)
 
 * solve issue with UTF8 Byte Order Mark
