@@ -4,3 +4,4 @@ composer.phar
 Gemfile
 Gemfile.lock
 Guardfile
+.phpunit.result.cache
