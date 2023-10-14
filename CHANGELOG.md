@@ -1,3 +1,10 @@
+### 2.0.0 (2023-10-14)
+
+BREAKING: increase minimum PHP requirement to 8.0.0
+
+* fix various PHP 8.x warnings
+* upgrade PHPUnit from 5.x to 9.x
+
 ### 1.1.9 (2018-02-18)
 
 * fix warning in PHP 7.2 by implementing `Countable` interface

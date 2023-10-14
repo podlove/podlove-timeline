@@ -1,84 +1,104 @@
-<?php 
+<?php
+
 namespace Podlove\Chapters;
 
-class Chapters implements \Iterator, \ArrayAccess, \Countable {
+class Chapters implements \Iterator, \ArrayAccess, \Countable
+{
+    private $chapters = [];
+    private $position = 0;
+    private $printer;
 
-	private $chapters = array();
-	private $printer = NULL;
+    public function __construct()
+    {
+        $this->setPrinter(new Printer\Nullprinter());
+    }
 
-	public function __construct() {
-		$this->setPrinter( new Printer\Nullprinter() );
-	}
+    public function __toString()
+    {
+        return $this->printer->do_print($this);
+    }
 
-	public function addChapter( $chapter ) {
-		$this->chapters[] = $chapter;
-	}
+    public function addChapter($chapter)
+    {
+        $this->chapters[] = $chapter;
+    }
 
-	public function __toString() {
-		return $this->printer->do_print( $this );
-	}
+    public function setPrinter(Printer\Printer $printer)
+    {
+        $this->printer = $printer;
+    }
 
-	public function setPrinter( \Podlove\Chapters\Printer\Printer $printer ) {
-		$this->printer = $printer;
-	}
+    public function toArray()
+    {
+        return $this->chapters;
+    }
 
-	public function toArray() {
-		return $this->chapters;
-	}
+    /**
+     * Iterator Methods.
+     */
+    public function rewind(): void
+    {
+        $this->position = 0;
+    }
 
-	/**
-	 * Iterator Methods
-	 */
+    #[\ReturnTypeWillChange]
+    public function current()
+    {
+        return $this->chapters[$this->position];
+    }
 
-	function rewind() {
-		return reset( $this->chapters );
-	}
+    #[\ReturnTypeWillChange]
+    public function key()
+    {
+        return $this->position;
+    }
 
-	function current() {
-		return current( $this->chapters );
-	}
+    public function next(): void
+    {
+        ++$this->position;
+    }
 
-	function key() {
-		return key( $this->chapters );
-	}
+    public function valid(): bool
+    {
+        return isset($this->chapters[$this->position]);
+    }
 
-	function next() {
-		return next( $this->chapters );
-	}
+    /**
+     * ArrayAccess Methods.
+     *
+     * @param mixed $offset
+     * @param mixed $value
+     */
+    public function offsetSet($offset, $value): void
+    {
+        if (is_null($offset)) {
+            $this->chapters[] = $value;
+        } else {
+            $this->chapters[$offset] = $value;
+        }
+    }
 
-	function valid() {
-		return key( $this->chapters ) !== null;
-	}
+    public function offsetExists($offset): bool
+    {
+        return isset($this->chapters[$offset]);
+    }
 
-	/**
-	 * ArrayAccess Methods
-	 */
-	
-	public function offsetSet($offset, $value) {
-	    if (is_null($offset)) {
-	        $this->chapters[] = $value;
-	    } else {
-	        $this->chapters[$offset] = $value;
-	    }
-	}
+    public function offsetUnset($offset): void
+    {
+        unset($this->chapters[$offset]);
+    }
 
-	public function offsetExists($offset) {
-	    return isset($this->chapters[$offset]);
-	}
+    #[\ReturnTypeWillChange]
+    public function offsetGet($offset)
+    {
+        return isset($this->chapters[$offset]) ? $this->chapters[$offset] : null;
+    }
 
-	public function offsetUnset($offset) {
-	    unset($this->chapters[$offset]);
-	}
-
-	public function offsetGet($offset) {
-	    return isset($this->chapters[$offset]) ? $this->chapters[$offset] : null;
-	}
-
-	/**
-	 * Countable Methods
-	 */
-	public function count() {
-	    return count($this->chapters);
-	}
-
+    /**
+     * Countable Methods.
+     */
+    public function count(): int
+    {
+        return count($this->chapters);
+    }
 }
