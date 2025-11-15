@@ -9,7 +9,7 @@ class Chapter
     private $link;
     private $image;
 
-    public function __construct($timestamp, $title, $link = '', $image = '')
+    public function __construct($timestamp, $title, $link = "", $image = "")
     {
         $this->timestamp = $timestamp;
         $this->title = $title;
@@ -30,6 +30,11 @@ class Chapter
     public function get_image()
     {
         return $this->image;
+    }
+
+    public function get_start_time_seconds_with_ms($precision = 3)
+    {
+        return round($this->timestamp / 1000, $precision);
     }
 
     public function get_time()
