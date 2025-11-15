@@ -1,7 +1,5 @@
 # Podlove Timeline
 
-[![Build Status](https://travis-ci.org/podlove/podlove-timeline.png?branch=master)](https://travis-ci.org/podlove/podlove-timeline)
-
 PHP library providing a toolkit to handle various timeline/chapter formats.
 
 Supported formats:
@@ -9,7 +7,7 @@ Supported formats:
 - mp4chaps
 - psc
 - JSON
-- WebVTT (soon)
+- PodcastIndexJSON (see [specification](https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/examples/chapters/jsonChapters.md))
 
 ## Usage
 
@@ -94,7 +92,7 @@ Parse chapters in various formats.
 
 #### Parser — PSC (Podlove Simple Chapters)
 
-```php 
+```php
 use \Podlove\Chapters\Parser;
 
 $psc_string = '<psc:chapters xmlns:psc="http://podlove.org/simple-chapters" version="1.2">
