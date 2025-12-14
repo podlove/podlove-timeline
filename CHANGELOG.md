@@ -1,3 +1,7 @@
+### 2.1.0 (2025-12-14)
+
+* add support for podcastindex style JSON
+
 ### 2.0.0 (2023-10-14)
 
 BREAKING: increase minimum PHP requirement to 8.0.0
